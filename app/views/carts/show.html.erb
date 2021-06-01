@@ -16,5 +16,5 @@
     
   <% end %>
 </ul>
-<h3>Cart total: <%= number_to_currency(@cart.sub_total) %></h3>
-<%=button_to "Go to Products",products_path,method: :get%>
+<h3>Cart total: <%= number_to_currency(@cart.cart_total) %></h3>
+<%=link_to "Go to Products",products_path%>

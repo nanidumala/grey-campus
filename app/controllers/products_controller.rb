@@ -22,13 +22,36 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.create(product_params)
+    @product = Product.new(product_params)
 
-    redirect_to products_path
+    #respond_to do |format|
+    #   if @product.save
+    #     format.html { redirect_to @product, notice: "Product was successfully created." }
+    #     format.json { render :show, status: :created, location: @product }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @product.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    if @product.save
+      redirect_to @product,notice: "product was successfully created."
+    else
+      render :new
+    end
+    #redirect_to @product
   end
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
+    # respond_to do |format|
+    #   if @product.update(product_params)
+    #     format.html { redirect_to @product, notice: "Product was successfully updated." }
+    #     format.json { render :show, status: :ok, location: @product }
+    #   else
+    #     format.html { render :edit, status: :unprocessable_entity }
+    #     format.json { render json: @product.errors, status: :unprocessable_entity }
+    #   end
+    # end
     @product = Product.find(params[:id])
     @product.update(product_params)
     redirect_to products_path
@@ -38,7 +61,10 @@ class ProductsController < ApplicationController
   def destroy
     @product=Product.find(params[:id])
     @product.destroy
-
+    # respond_to do |format|
+    #   format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
+    #   format.json { head :no_content }
+    # end
     redirect_to products_path
   end
 
