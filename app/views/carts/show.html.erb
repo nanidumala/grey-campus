@@ -1,24 +1,26 @@
 <h2>Cart show</h2>
 
-  <div data-controller="hello">
-    <h1 data-target="hello.output" ></h1>
-  </div>
-<ul>
-  <% @cart.line_items.each do |line_item| %>
-    <li>Item: <%= line_item.product.name %>/ Price: <%= number_to_currency(line_item.product.price) %>/ Quantity: <%= line_item.quantity %>/ Total Price: <%= number_to_currency(line_item.total_price) %>
+  <div data-controller="cart">
+    <div data-cart-target="output" >
     <ul>
-      <li>
-        <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post %>
-        </li>
-        <li>
-        <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post %>
-      </li>
-      <li>
-        <%= link_to "Remove item", line_item_path(line_item), method: :delete %>
-      </li>
+      <% @cart.line_items.each do |line_item|  %>
+        <li>Item: <%= line_item.product.name %> // Price: <%= number_to_currency(line_item.product.price) %>// Quantity: <%= line_item.quantity %>// Total Price: <%= number_to_currency(line_item.total_price) %>
+        <ul>
+          <li>
+            <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post %>
+            </li>
+            <li>
+            <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post %>
+            </li>
+            <li>
+            <%= link_to "Remove item", line_item_path(line_item), method: :delete %>
+            </li>
+        </ul>
+      <% end %>
     </ul>
-    
-  <% end %>
-</ul>
-<h3>Cart total: <%= number_to_currency(@cart.cart_total) %></h3>
+    <h3>Cart total: <%= number_to_currency(@cart.cart_total) %></h3>
+  </div>
+  <button data-action="cart#summary">cart-summary</button>
+  </div>
+  <br>
 <%=link_to "Go to Products",products_path%>
