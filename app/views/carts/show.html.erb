@@ -1,10 +1,11 @@
 <h2>Cart show</h2>
 
   <div data-controller="cart">
-    <div data-cart-target="output" >
     <ul>
       <% @cart.line_items.each do |line_item|  %>
+      <div data-cart-target="output" >
         <li>Item: <%= line_item.product.name %> // Price: <%= number_to_currency(line_item.product.price) %>// Quantity: <%= line_item.quantity %>// Total Price: <%= number_to_currency(line_item.total_price) %>
+      </div>
         <ul>
           <li>
             <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post %>
@@ -19,7 +20,6 @@
       <% end %>
     </ul>
     <h3>Cart total: <%= number_to_currency(@cart.cart_total) %></h3>
-  </div>
   <button data-action="cart#summary">cart-summary</button>
   </div>
   <br>
