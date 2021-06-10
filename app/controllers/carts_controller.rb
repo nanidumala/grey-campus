@@ -1,6 +1,10 @@
 class CartsController < ApplicationController
   def show
     @cart = @current_cart
+    respond_to do |format|
+      format.html
+      format.json { render json: { cart: @cart } }
+    end
   end
   
   def destroy
