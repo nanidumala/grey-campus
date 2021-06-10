@@ -20,10 +20,10 @@ export default class extends Controller {
   }   
   
   load(event) {
-    const csrfToken = document.querySelector("[name='csrf-token']").content
+    const csrfToken = document.querySelector("[name='csrf-token']").getAttribute("content")
    // this.preventDefault();
     console.log(event.target)
-    let product_id = this.element.getAttribute("id");
+    let product_id = event.target.getAttribute("id");
     //let cart_id = 26;
 
 
@@ -33,11 +33,12 @@ export default class extends Controller {
         "X-CSRF-Token": csrfToken,
         "Content-type": "application/json"
     },
-      body:JSON.stringify({product_id:product_id})
+      body:JSON.stringify({product_id: product_id}),
+      credentials: "same-origin"
   })
   // .then(response => response.json())
   // .then((data) =>  console.log(data))
-   .catch((err)=>console.log(err))
+  //  .catch((err)=>console.log(err))
 
 
 //     fetch("http://localhost:3000/carts/26")
