@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Products</h1>
-<table data-controller="cart">
+<table >
   <thead>
     <tr>
       <th>Name</th>
@@ -11,7 +11,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody data-controller="cart" data-content-loader-url-value="http://localhost:3000/line_items">
     <% @products.each do |product| %>
     <tr>
     
