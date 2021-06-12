@@ -1,8 +1,8 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "output" ]
-  static values = { url: String }
+  static targets = [ "output" , "link" , "num" ]
+  static values = { url: String, count:Number }
 
   connect(){
     console.log("text")
@@ -23,7 +23,7 @@ export default class extends Controller {
     let a=0
     const csrfToken = document.querySelector("[name='csrf-token']").getAttribute("content")
     event.preventDefault();
-    console.log(event.target)
+    //console.log(this.urlValue)
     let product_id = event.target.getAttribute("id");
     //let cart_id = 26;
 
@@ -39,7 +39,15 @@ export default class extends Controller {
   })
   
   //.catch(err=>alert("error occurred"))
-  .then(alert("product is added"))
+  .then(response => {if(response.status ==200){
+    this.countValue=this.countValue+1;
+    alert("product was added to cart")
+    this.numTarget.textContent=this.countValue+ " products";
+
+  }
+else if (response.status==404){
+  alert("product adding failed")}
+})
   
   // .then(async response => {
   //     try {

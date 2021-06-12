@@ -1,3 +1,4 @@
+<html data-controller="cart"  data-cart-count-value=0  data-cart-url-value=<%=line_items_path%> >
 <p id="notice"><%= notice %></p>
 
 <h1>Products</h1>
@@ -11,7 +12,8 @@
     </tr>
   </thead>
 
-  <tbody data-controller="cart" data-content-loader-url-value="http://localhost:3000/line_items">
+  <tbody >
+ 
     <% @products.each do |product| %>
     <tr>
     
@@ -31,11 +33,12 @@
 </table>
 
 <br>
+<div data-cart-target="num"> 0 products</div>
 
 <%= link_to 'New Product', new_product_path %>
 
 <br>
 
 <%=link_to 'cart',cart_path(@current_cart)%>
-
+</html>
 
