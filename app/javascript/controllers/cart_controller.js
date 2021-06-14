@@ -35,7 +35,7 @@ export default class extends Controller {
         "Content-type": "application/json"
     },
       body:JSON.stringify({product_id: product_id}),
-      credentials: "same-origin"
+      //credentials: "same-origin"
   })
   
   //.catch(err=>alert("error occurred"))
@@ -47,6 +47,10 @@ export default class extends Controller {
   }
 else if (response.status==404){
   alert("product adding failed")}
+else 
+{
+  alert("error occurred")
+}
 })
   
   // .then(async response => {
