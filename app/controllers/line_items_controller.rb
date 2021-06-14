@@ -21,7 +21,7 @@ class LineItemsController < ApplicationController
 
     def reduce_quantity
         @line_item = LineItem.find(params[:id])
-        @line_item.reduce__quantity()
+        @line_item.reduce__quantity
         # if @line_item.quantity > 1
         #     @line_item.quantity -= 1
         # else

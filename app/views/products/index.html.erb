@@ -1,4 +1,4 @@
-<html data-controller="cart"  data-cart-count-value=<%=@cart.line_items.sum {|line_item| line_item[:quantity]} %> data-cart-url-value=<%=line_items_path%> >
+<html data-controller="cart"  data-cart-count-value=<%=@cart.total_quantity %> data-cart-url-value=<%=line_items_path%> >
 <head>
 <meta name="turbolinks-visit-control" content="reload">
 </head>
@@ -35,7 +35,7 @@
 </table>
 
 <br>
-<div data-cart-target="num"> <%=@cart.line_items.sum {|line_item| line_item[:quantity]}%> products</div>
+<div data-cart-target="num"> <%=@cart.total_quantity%> products</div>
 
 <%= link_to 'New Product', new_product_path %>
 

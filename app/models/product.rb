@@ -5,4 +5,8 @@ class Product < ApplicationRecord
     validates :description, presence: true, length: {minimum: 10}
     validates :image, presence: true
     validates :price, presence: true, numericality: {greater_than: 0, message: "price should be greater than Zero"}
+
+
+
+
 end
