@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
       #   #Cart.destroy(session[:cart_id])
         format.html { redirect_to orders_path, notice: "Order was placed." }
         format.json { render :show, status: :created, location: @order }
-      # else
+      else
         format.html { redirect_to cart_path(current_cart), notice: "order was not placed" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
