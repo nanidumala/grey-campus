@@ -151,6 +151,9 @@ GEM
       ffi (~> 1.0)
     rb-readline (0.5.5)
     regexp_parser (2.1.1)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rex (2.0.13)
       filesize (~> 0)
       jsobfu (~> 0)
@@ -183,6 +186,11 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.34.0)
+    stripe-rails (2.3.0)
+      rails (>= 5.1)
+      responders
+      stripe (>= 3.15.0)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -229,6 +237,8 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  stripe
+  stripe-rails
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

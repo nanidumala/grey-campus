@@ -3,13 +3,12 @@ class Order < ApplicationRecord
 
 
     enum pay_type: {
-stripe: 0
+"stripe" => 0
 }
     enum status: { pending: 0, failed: 1, paid: 2}
 
-    validates :name,  :email,  presence: true
+    validates :name,  :email, :pay_type,  presence: true
     validates :address, presence: true, length: {minimum: 10}
-    validates :pay_type, inclusion: pay_types.keys
     validates :email, :format => {:with => /@/, :message => "is invalid"}
 
 

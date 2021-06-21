@@ -22,15 +22,30 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-    @order.add_cart_items_to_order(@current_cart)
+    current_cart=@current_cart
+    # @order.add_cart_items_to_order(@current_cart)
 
     respond_to do |format|
-      if @order.save
-        #Cart.destroy(session[:cart_id])
-        format.html { redirect_to root_path, notice: "Order was placed." }
+      if @order.save # this will save the order 
+       
+       current_cart.line_items.each do |line_item|
+          # using the bang (!) to save to the DB and raise any errors
+          # rather than failing silently
+          @order.order_items.create!(         
+             product_id: line_item.product_id,
+             quantity:   line_item.quantity,
+             product_name: line_item.product.name,
+             product_price: line_item.product.price
+            #quantity: line_item.quantity
+          )
+          end
+
+
+      #   #Cart.destroy(session[:cart_id])
+        format.html { redirect_to orders_path, notice: "Order was placed." }
         format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+      # else
+        format.html { redirect_to cart_path(current_cart), notice: "order was not placed" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
@@ -66,6 +81,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:name, :email, :address)
+      params.require(:order).permit(:name, :email, :address, :pay_type)
     end
 end

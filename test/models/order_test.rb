@@ -28,5 +28,6 @@ class OrderTest < ActiveSupport::TestCase
     assert order.errors[:address].none?
   end
 
+
 end
 
