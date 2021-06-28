@@ -1,0 +1,18 @@
+<h1>User#order_received</h1>
+
+<p>
+  <%= @greeting %>, <h6><%=@order.name%> </h6> 
+</p>
+<p> we have received your order
+<br>
+order summary : <%@order.order_items.each do |order|%>
+        <br>
+        product_name:<%=order["product_name"]%>
+      <br>
+      quantity:<%=order["quantity"]%>
+      <br>
+      price:<%=order["product_price"]%>
+      <br>
+      
+<%end%>
+Total_price:<%=@order["total_price"]%>

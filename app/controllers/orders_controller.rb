@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
             #quantity: line_item.quantity
           )
           end
-            @order.total_price=@order.order_items.sum{|item| item["quantity"]*item["product_price"]}*100
+            @order.total_price=@order.order_items.sum{|item| item["quantity"]*item["product_price"]}
             @order.token=params[:stripeToken]
             @order.save
           begin
@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
           
             charge = Stripe::Charge.create(
               customer: customer.id,
-              amount:@order.total_price.to_i ,
+              amount:(@order.total_price.to_i)*100 ,
               description: 'Rails Stripe customer',
               currency: 'inr'
             
@@ -66,6 +66,7 @@ class OrdersController < ApplicationController
             @order.set_paid
             session[:cart_id] = nil
             @order.save
+            UserMailer.order_received(@order).deliver_later!
             format.html { redirect_to placed_order_path(@order), notice: "Order was placed." }
 
             
