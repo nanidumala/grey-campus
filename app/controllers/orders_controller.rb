@@ -97,6 +97,7 @@ end
   end
 
   def placed
+    @order=Order.last
 
   end
 

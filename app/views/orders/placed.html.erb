@@ -1,9 +1,10 @@
 <h4>Placed Order Succesfully</h4>
 <p>
-  <strong>Name:</strong>
-  <%= @order.name %>
+  <strong>price:</strong>
+  <%= @order.total_price %>
 </p>
 <p>
   <strong>gmail:</strong>
   <%= @order.email %>
 </p>
+<%= link_to 'products page', products_path,method: :get%>
