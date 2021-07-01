@@ -17,5 +17,8 @@ delete 'line_items/:id' => "line_items#destroy"
 get 'orders/:id/placed' => "orders#placed", as: "placed_order"
 
 
+resources :support_requests, only: [ :index, :update]
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
